@@ -1,9 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+
+/* div {
+  border: 1px #000 solid;
+} */
+
+/*
+section {
+  border: 1px #000 solid;
+} */
+.left-block {
+  width: 55%;
+}
+
+.right-block {
+  width: 45%;
+}
+
+/*
+.link-bar {
+  border: 1px rgb(209, 75, 75) solid;
+}
+
+.link-text {
+  border: 1px rgb(209, 75, 75) solid;
+} */
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Roboto, Ubuntu, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+}
+
+.title-alector {
+  font-family: "Ubuntu", sans-serif;
 }
 
 a {
@@ -13,4 +48,25 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.bullet-top {
+  background-image: url("../public/img/template/bullet_top_v1.svg") !important;
+  /* background-size: 30px auto; */
+  background-repeat: no-repeat;
+  background-position: 50% -25%;
+}
+
+.bullet-middle {
+  background-image: url("../public/img/template/bullet_middle_v1.svg") !important;
+  /* background-size: 30px auto; */
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.bullet-bottom {
+  background-image: url("../public/img/template/bullet_bottom_v1.svg") !important;
+  /* background-size: 30px auto; */
+  background-repeat: no-repeat;
+  background-position: 50% 122%;
 }
