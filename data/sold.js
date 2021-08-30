@@ -1,0 +1,1 @@
+export const SOLD = "0x5343a4540dEA4E4ca75d089e8A4fC472163596a8"
