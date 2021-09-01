@@ -1,4 +1,22 @@
 export const USERS = {
+  "0x0000000000000000000000000000000000000000": {
+    name: "zero",
+    role: "",
+    country: "",
+    street: "",
+    city: "",
+    province: "",
+    zip_code: ""
+  },
+  "0x5343a4540dEA4E4ca75d089e8A4fC472163596a8": {
+    name: "sold",
+    role: "",
+    country: "",
+    street: "",
+    city: "",
+    province: "",
+    zip_code: ""
+  },
   "0x2FAA5d599e9aC5d1a5092a6e1b1C7FC7DCBDAC45": {
     name: "Jack (dev)",
     role: "administrator",

@@ -50,7 +50,14 @@ a {
   box-sizing: border-box;
 }
 
-.bullet-top {
+.bullet-simple {
+  background-image: url("../public/img/template/bullet_simple_v1.svg") !important;
+  /* background-size: 30px auto; */
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.bullet-first {
   background-image: url("../public/img/template/bullet_top_v1.svg") !important;
   /* background-size: 30px auto; */
   background-repeat: no-repeat;
@@ -64,7 +71,7 @@ a {
   background-position: 50% 50%;
 }
 
-.bullet-bottom {
+.bullet-last {
   background-image: url("../public/img/template/bullet_bottom_v1.svg") !important;
   /* background-size: 30px auto; */
   background-repeat: no-repeat;
