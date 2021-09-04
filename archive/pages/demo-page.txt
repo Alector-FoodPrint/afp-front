@@ -1,0 +1,14 @@
+import Navbar from "./navbar"
+import Footer from "./footer"
+import LogoTop from "/components/logo-top"
+import DashboardLayout from "/components/layout-dashboard"
+
+export default function Demo({ var }) {
+  return (
+    <>
+      <DashboardLayout>
+        <section className="all-assets-row "></section>
+      </DashboardLayout>
+    </>
+  )
+}

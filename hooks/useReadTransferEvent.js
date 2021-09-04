@@ -18,11 +18,11 @@ const useReadTransferEvent = (myContract, tokenId) => {
 
     for (const event of events) {
       const f = event.args[0]
-      const from = f.toString()
+      const from = f.toString().toLowerCase()
       const fromName = globalData.USERS[from].name
       const fromCountry = globalData.USERS[from].country
       const t = event.args[1]
-      const to = t.toString()
+      const to = t.toString().toLowerCase()
       const toName = globalData.USERS[to].name
       const toCountry = globalData.USERS[to].country
       const tokenId = event.args[2]

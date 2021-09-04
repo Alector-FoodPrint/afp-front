@@ -1,57 +1,47 @@
 import React, { Component } from "react"
 import { UserIcon, FingerPrintIcon, TruckIcon, ShoppingBagIcon, ViewGridIcon } from "@heroicons/react/solid"
-
-const Navbar = props => {
+import NavBtnLong from "/components/navbar-button-long"
+import Link from "next/link"
+const Navbar = ({ page }) => {
   return (
     <aside className="h-screen sticky top-0  lg:w-52 bg-white flex-shrink-0">
       <div className="logo text-foodprint-70 lg:text-foodprint-800 text-sm lg:text-3xl my-10 mx-auto font-black text-center  lg:visible">AFP</div>
 
       <div className="navigation">
-        <div className="link h-20 w-full h-full  hidden lg:flex">
-          <div className="link-bar w-2 bg-foodprint-800 h-10 rounded-r-lg"></div>
+        <NavBtnLong description="My Profile" active={page == "profile"} myLink="/v1/profile" />
+        <NavBtnLong description="Producers" myLink="/v1/producers" active={page == "producers"} />
+        <NavBtnLong description="Warehouses" myLink="/v1/warehouses" active={page == "warehouses"} />
+        <NavBtnLong description="Vendors" myLink="/v1/vendors" active={page == "vendors"} />
+        <NavBtnLong description="Food Assets" myLink="/v1/food-assets" active={page == "food-assets"} />
 
-          <div className="link-bar  w-full h-10 pt-2 pl-5 font-black text-foodprint-800 ">My Profile</div>
-        </div>
+        <Link href="/v1/profile" passHref>
+          <div className={`link h-20 w-full h-full   sm:flex  lg:hidden  p-3 hover:bg-foodprint-700 hover:text-white  ${page == "profile" ? "bg-foodprint-700 text-white" : "bg-white text-foodprint-700"}`}>
+            <UserIcon className="mx-auto h-6 w-6    font-black " />
+          </div>
+        </Link>
+        <Link href="/v1/producers" passHref>
+          <div className={`link h-20 w-full h-full   sm:flex  lg:hidden  p-3 hover:bg-foodprint-700 hover:text-white  ${page == "producers" ? "bg-foodprint-700 text-white" : "bg-white text-foodprint-700"}`}>
+            <FingerPrintIcon className="mx-auto h-6 w-6    font-black " />
+          </div>
+        </Link>
 
-        <div className="link h-20 w-full h-full hidden lg:flex">
-          <div className="link-bar w-2 bg-white h-10 rounded-r-lg"></div>
-          <div className="link-bar  w-full h-10 pt-2 pl-5 font-black text-foodprint-300">Producers</div>
-        </div>
+        <Link href="/v1/warehouses" passHref>
+          <div className={`link h-20 w-full h-full   sm:flex  lg:hidden  p-3 hover:bg-foodprint-700 hover:text-white  ${page == "warehouses" ? "bg-foodprint-700 text-white" : "bg-white text-foodprint-700"}`}>
+            <TruckIcon className="mx-auto h-6 w-6    font-black " />
+          </div>
+        </Link>
 
-        <div className="link h-20 w-full h-full hidden lg:flex">
-          <div className="link-bar w-2 bg-white h-10 rounded-r-lg"></div>
-          <div className="link-bar  w-full h-10 pt-2 pl-5 font-black text-foodprint-300">Warehouses</div>
-        </div>
+        <Link href="/v1/vendors" passHref>
+          <div className={`link h-20 w-full h-full   sm:flex  lg:hidden  p-3 hover:bg-foodprint-700 hover:text-white  ${page == "vendors" ? "bg-foodprint-700 text-white" : "bg-white text-foodprint-700"}`}>
+            <ShoppingBagIcon className="mx-auto h-6 w-6    font-black " />
+          </div>
+        </Link>
 
-        <div className="link h-20 w-full h-full hidden lg:flex">
-          <div className="link-bar w-2 bg-white h-10 rounded-r-lg"></div>
-          <div className="link-bar  w-full h-10 pt-2 pl-5 font-black text-foodprint-300">Vendors</div>
-        </div>
-
-        <div className="link h-20 w-full h-full  hidden lg:flex">
-          <div className="link-bar w-2 bg-white h-10 rounded-r-lg"></div>
-          <div className="link-bar  w-full h-10 pt-2 pl-5 font-black text-foodprint-300">Food Assets</div>
-        </div>
-
-        <div className="link h-20 w-full h-full   sm:flex  lg:hidden text-foodprint-700 p-3 hover:bg-foodprint-700 hover:text-white">
-          <UserIcon className="mx-auto h-6 w-6    font-black " />
-        </div>
-
-        <div className="link h-20 w-full h-full   sm:flex  lg:hidden text-foodprint-700 p-3 hover:bg-foodprint-700 hover:text-white">
-          <FingerPrintIcon className="mx-auto h-6 w-6    font-black " />
-        </div>
-
-        <div className="link h-20 w-full h-full   sm:flex  lg:hidden text-foodprint-700 p-3 hover:bg-foodprint-700 hover:text-white">
-          <TruckIcon className="mx-auto h-6 w-6    font-black " />
-        </div>
-
-        <div className="link h-20 w-full h-full   sm:flex  lg:hidden text-foodprint-700 p-3 hover:bg-foodprint-700 hover:text-white">
-          <ShoppingBagIcon className="mx-auto h-6 w-6    font-black " />
-        </div>
-
-        <div className="link h-20 w-full h-full   sm:flex  lg:hidden text-foodprint-700 p-3 hover:bg-foodprint-700 hover:text-white">
-          <ViewGridIcon className="mx-auto h-6 w-6    font-black " />
-        </div>
+        <Link href="/v1/food-assets" passHref>
+          <div className={`link h-20 w-full h-full   sm:flex  lg:hidden  p-3 hover:bg-foodprint-700 hover:text-white  ${page == "food-assets" ? "bg-foodprint-700 text-white" : "bg-white text-foodprint-700"}`}>
+            <ViewGridIcon className="mx-auto h-6 w-6    font-black " />
+          </div>
+        </Link>
       </div>
     </aside>
   )

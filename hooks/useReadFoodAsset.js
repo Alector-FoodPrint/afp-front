@@ -27,12 +27,12 @@ const useReadFoodAsset = (myContract, tokenId) => {
     const unit = globalData.FOOD_TYPES[foodType].unit
 
     const producer = fa.producedBy
-    const producerHash = producer.toString()
+    const producerHash = producer.toString().toLowerCase()
     const producerName = globalData.USERS[producerHash].name
 
     const producerCountry = globalData.USERS[producerHash].country
 
-    const ownerHash = owner.toString()
+    const ownerHash = owner.toString().toLowerCase()
     const ownerName = globalData.USERS[ownerHash].name
 
     const ownerCountry = globalData.USERS[ownerHash].country

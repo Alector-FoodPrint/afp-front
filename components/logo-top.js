@@ -8,7 +8,7 @@ const LogoTop = props => {
           <span className="title-alector font-ubuntu text-4xl font-light">Alector</span> <span className="text-4xl font-black">FoodPrint</span>
         </div>
       </div>
-      <div className="login pr-10 text-sm invisible lg:visible">Logout with Metamask</div>
+      <div className="login pr-10 text-sm invisible lg:visible hidden">Logout with Metamask</div>
     </div>
   )
 }
