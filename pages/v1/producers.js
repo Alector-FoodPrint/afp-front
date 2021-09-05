@@ -5,6 +5,7 @@ import { ethers } from "ethers"
 import { useRouter } from "next/router"
 import useReadFoodAsset from "/hooks/useReadFoodAsset"
 import DashboardLayout from "/components/layout-dashboard"
+import BoxUser from "/components/box-user"
 
 const Producers = props => {
   const myContract = useContext(contextAfp)
@@ -23,6 +24,8 @@ const Producers = props => {
         <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 px-8  py-5 ">
           <div className="info flex justify-center space-x-4 md:space-x-7">Add info</div>
         </article>
+
+        <BoxUser />
       </section>
       <section> </section>
     </DashboardLayout>
