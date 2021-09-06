@@ -1,7 +1,7 @@
 import { useToast } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
-const useContractTransaction3 = message => {
+export default function useContractTransaction({ message, redirectTo }) {
   // let tx
   const [txLoading, setTxLoading] = useState(false)
   const [promise, setPromise] = useState(null)
@@ -9,6 +9,7 @@ const useContractTransaction3 = message => {
 
   const setTransaction = async message => {
     try {
+      console.log("TRANSACTION STARTED")
       setTxLoading(prev => true)
 
       const tx = await promise
@@ -57,5 +58,3 @@ const useContractTransaction3 = message => {
 
   return [txLoading, setPromise]
 }
-
-export default useContractTransaction3
