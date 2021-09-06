@@ -49,7 +49,7 @@ export default function useDashboardUser({ redirectNoMetamaskLogin = false, redi
       const account = web3State.account
       if (account && account !== zeroAccount) {
         const user = USERS[account.toLowerCase()]
-        setPrint({ account: account, user: user, users: USERS })
+        // setPrint({ account: account, user: user, users: USERS })
 
         setUser(prev => USERS[web3State.account])
         // setUserRegistered(prev => true)
