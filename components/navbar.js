@@ -8,7 +8,7 @@ const Navbar = ({ page }) => {
       <div className="logo text-foodprint-70 lg:text-foodprint-800 text-sm lg:text-3xl my-10 mx-auto font-black text-center  lg:visible">AFP</div>
 
       <div className="navigation">
-        <NavBtnLong description="My Profile" active={page == "profile"} myLink="/v1/profile" />
+        <NavBtnLong description="Profile" active={page == "profile"} myLink="/v1/profile" />
         <NavBtnLong description="Producers" myLink="/v1/producers" active={page == "producers"} />
         <NavBtnLong description="Warehouses" myLink="/v1/warehouses" active={page == "warehouses"} />
         <NavBtnLong description="Vendors" myLink="/v1/vendors" active={page == "vendors"} />

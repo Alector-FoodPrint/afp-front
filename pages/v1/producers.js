@@ -10,22 +10,26 @@ import BoxUser from "/components/box-user"
 const Producers = props => {
   const myContract = useContext(contextAfp)
   const globalData = useContext(contextData)
+  const [users, setUsers] = useState(null)
+
+  useEffect(() => {
+    if (globalData) {
+      setUsers(prev => globalData.USERS.PRODUCERS)
+    }
+  }, [globalData])
 
   // const [web3State] = useContext(Web3Context)
   // const [foodObject, setFoodObject] = useState("")
 
   // const [isLoading, setIsLoading] = useState(false)
+  const listUsers = users?.map(user => <BoxUser user={user} key={user.hash} />) ?? []
 
   return (
     <DashboardLayout page="producers">
       <section className="all-assets-row ">
         <div className="content-title text-foodprint-700 font-black mx-8 md:mx-16  mt-10  pl-3 mb-0">Producers</div>
 
-        <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 px-8  py-5 ">
-          <div className="info flex justify-center space-x-4 md:space-x-7">Add info</div>
-        </article>
-
-        <BoxUser />
+        {listUsers}
       </section>
       <section> </section>
     </DashboardLayout>

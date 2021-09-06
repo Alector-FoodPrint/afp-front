@@ -44,6 +44,7 @@ const ContextWrapper = props => {
     let fetchUsers = async () => {
       // const result = await fetch("/data/users")
       let result = {}
+      result.userFilter = userFilter
       result.USERS = USERS
       result.SOLD = SOLD
       result.FOOD_TYPES = FOOD_TYPES

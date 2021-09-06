@@ -40,14 +40,14 @@ const JsxLoaded = ({ user }) => {
 
         <div className="col8 hidden md:flex items-center flex-grow justify-end">
           <div className="arrow-context  bg-foodprint-70 rounded-full h-16 w-16 flex items-center hover:bg-foodprint-700">
-            <Link href={`/v1/food-asset/${"ah"}`} passHref>
+            <Link href={`/v1/profile/${user.hash}`} passHref>
               <ArrowRightIcon className="mx-auto h-10 w-10 text-white" />
             </Link>
           </div>
         </div>
       </div>
       <div className="col8 md:hidden w-full mt-5  bg-foodprint-70 hover:bg-foodprint-700 rounded-lg">
-        <Link href={`/v1/food-asset/${"blabla"}`} passHref>
+        <Link href={`/v1/profile/${user.hash}`} passHref>
           <a href="">
             <ArrowRightIcon className="mx-auto h-10 w-10 text-white" />
           </a>
@@ -60,17 +60,17 @@ const JsxLoaded = ({ user }) => {
 const jsxError = <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 px-8  py-5 h30 text-center ">User not found</article>
 
 const BoxUser = ({ user }) => {
-  user = {
-    hash: "0x429dcf7b3b61036a8f9f1c58e6664a32d2167e43",
-    id: "4",
-    name: "Florent X.",
-    role: "producer",
-    country: "France",
-    street: "67 Chemin Des Bateliers",
-    city: "ANGERS",
-    province: "Pays de la Loire",
-    zip_code: "4367"
-  }
+  // user = {
+  //   hash: "0x429dcf7b3b61036a8f9f1c58e6664a32d2167e43",
+  //   id: "4",
+  //   name: "Florent X.",
+  //   role: "producer",
+  //   country: "France",
+  //   street: "67 Chemin Des Bateliers",
+  //   city: "ANGERS",
+  //   province: "Pays de la Loire",
+  //   zip_code: "4367"
+  // }
 
   if (user) {
     return <JsxLoaded user={user} />

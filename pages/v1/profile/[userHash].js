@@ -12,21 +12,39 @@ import BoxFAProfile from "/components/box-fa-profile-dynamic"
 import BtnAddFA from "/components/btn-add-fa"
 import useReadContractUser from "/hooks/useReadContractUser"
 import Footer from "/components/footer"
+import { useRouter } from "next/router"
 
 import { Web3Context } from "web3-hooks"
 import { useContext } from "react"
-import { contextAfp } from "/context/context-wrapper"
+import { contextAfp, contextData } from "/context/context-wrapper"
 
-const Profile = props => {
+const UserProfile = props => {
   const myContract = useContext(contextAfp)
+  const globalData = useContext(contextData)
+  const [user, setUser] = useState(null)
 
-  const { web3State, login, user, userLoading } = useDashboardUser()
-  const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, web3State.account)
+  const router = useRouter()
+  const { userHash } = router.query
+
+  // const { web3State, login, user, userLoading } = useDashboardUser()
+  const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash)
 
   const [print, setPrint] = useState(null)
   useEffect(() => {
-    console.log(">>>>>> profile page ", print)
-  }, [print])
+    console.log(">>>>>> userHash ", userHash)
+
+    if (userHash && globalData) {
+      // userFilter(USERS, item => item["id"] == "1")
+      const u = globalData.userFilter(globalData.USERS, item => item["hash"] == userHash)
+      setUser(prev => u[0])
+      console.log(">>>>>> u", u)
+    }
+  }, [userHash, globalData])
+
+  // globalData.userFilter(USERS, item => item["id"] == "1")
+  // useEffect(() => {
+  //   console.log(">>>>>> profile page ", print)
+  // }, [print])
 
   const ListItems = ({ ownedIDs, isLoading }) => {
     if (ownedIDs) {
@@ -45,9 +63,9 @@ const Profile = props => {
     <DashboardLayout page="profile">
       <div className="row-two-section w-full">
         <div className="two-section-container md:flex justify-between mx-8   md:mx-16">
-          <BoxProfile title={"My Profile"} user={user} />
+          <BoxProfile title={"User Profile"} user={user} />
 
-          <BoxBlockchain web3State={web3State} ownedIDs={ownedIDs} />
+          {/* <BoxBlockchain web3State={web3State} ownedIDs={ownedIDs} /> */}
         </div>
       </div>
 
@@ -78,4 +96,4 @@ const Profile = props => {
   )
 }
 
-export default Profile
+export default UserProfile

@@ -2,11 +2,11 @@ import React, { Component } from "react"
 import SpinnerSyncLoader from "/components/spinner-syncloader"
 import { InformationCircleIcon } from "@heroicons/react/solid"
 
-const BoxProfile = ({ user }) => {
+const BoxProfile = ({ user, title }) => {
   if (user) {
     return (
       <section className="content-half md:w-3/6 ">
-        <div className="content-title text-foodprint-700 font-black mb-8 ml-3">My Profile</div>
+        <div className="content-title text-foodprint-700 font-black mb-8 ml-3">{title}</div>
 
         <div className="content-white  bg-white rounded-lg p-8 pb-10 ">
           <div className="row flex ">
