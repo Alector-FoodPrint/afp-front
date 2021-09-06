@@ -47,7 +47,7 @@ const Profile = props => {
         <div className="two-section-container md:flex justify-between mx-8   md:mx-16">
           <BoxProfile user={user} />
 
-          {web3State && ownedIDs ? <BoxBlockchain web3State={web3State} totalFoodAssets={ownedIDs.length} /> : ""}
+          <BoxBlockchain web3State={web3State} ownedIDs={ownedIDs} />
         </div>
       </div>
 

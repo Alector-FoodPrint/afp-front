@@ -13,11 +13,14 @@ import { ethers } from "ethers"
 import { useRouter } from "next/router"
 import useReadFoodAsset from "/hooks/useReadFoodAsset"
 import DashboardLayout from "/components/layout-dashboard"
+import BoxTransfer from "/components/box-transfer"
+
 import Link from "next/link"
 
 const FoodAsset = props => {
   const myContract = useContext(contextAfp)
   const globalData = useContext(contextData)
+  const [web3State, login] = useContext(Web3Context)
 
   // const [web3State] = useContext(Web3Context)
   // const [foodObject, setFoodObject] = useState("")
@@ -30,9 +33,25 @@ const FoodAsset = props => {
 
   const allAssetsLink = "v1/food-assets"
 
+  const [ownerLoggedIn, setOwnerLoggedIn] = useState(false)
+  const [ownerAddress, setOwnerAddress] = useState(null)
+
+  const [showBtn, setShowBtn] = useState(true)
+
   useEffect(() => {
-    console.log("-----fa", foodObject)
-  }, [foodObject])
+    if (foodObject && web3State) {
+      console.log("logged in address", web3State.account)
+      console.log("owner", foodObject.ownerHash)
+      setOwnerAddress(prev => web3State.account)
+
+      setOwnerLoggedIn(prev => false)
+
+      if (web3State.account === foodObject.ownerHash) {
+        console.log("ownerLoggedIn", ownerLoggedIn)
+        setOwnerLoggedIn(prev => true)
+      }
+    }
+  }, [foodObject, web3State])
 
   return (
     <DashboardLayout page="food-assets">
@@ -43,7 +62,8 @@ const FoodAsset = props => {
       </section>
       <section>
         <BoxFAhistory tokenId={tokenId} />
-        <BtnTransferFA />
+        <BoxTransfer tokenId={tokenId} ownerAddress={ownerAddress} />
+        <div>{ownerLoggedIn && showBtn ? <BtnTransferFA /> : ""}</div>
       </section>
     </DashboardLayout>
   )
