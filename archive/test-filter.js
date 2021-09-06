@@ -118,6 +118,8 @@ myFilter = function (obj, predicate) {
   return result
 }
 
+const filterByID = id => {}
+
 userFilter = function (obj, predicate) {
   let result = [],
     key
@@ -138,5 +140,7 @@ userFilter = function (obj, predicate) {
   return result
 }
 
-userFilter(USERS, item => item["role"] == "producer")
+// userFilter(USERS, item => item["role"] == "producer")
+userFilter(USERS, item => item["id"] == "1")
+
 // filter(USERS, item => item["role"] == "vendor")
