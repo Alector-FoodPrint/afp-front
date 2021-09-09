@@ -36,7 +36,7 @@ const FoodAsset = props => {
   const [ownerLoggedIn, setOwnerLoggedIn] = useState(false)
   const [ownerAddress, setOwnerAddress] = useState(null)
 
-  const [showBtn, setShowBtn] = useState(true)
+  const [buttonClicked, setButtonClicked] = useState(false)
 
   useEffect(() => {
     if (foodObject && web3State) {
@@ -53,6 +53,11 @@ const FoodAsset = props => {
     }
   }, [foodObject, web3State])
 
+  const handleButtonClicked = () => {
+    setButtonClicked(prev => true)
+    console.log("I am clicked!")
+  }
+
   return (
     <DashboardLayout page="food-assets">
       <section className="all-assets-row ">
@@ -62,8 +67,9 @@ const FoodAsset = props => {
       </section>
       <section>
         <BoxFAhistory tokenId={tokenId} />
-        <BoxTransfer tokenId={tokenId} ownerAddress={ownerAddress} />
-        <div>{ownerLoggedIn && showBtn ? <BtnTransferFA /> : ""}</div>
+        <div>{ownerLoggedIn && buttonClicked ? <BoxTransfer tokenId={tokenId} ownerAddress={ownerAddress} /> : ""}</div>
+
+        <div onClick={handleButtonClicked}>{ownerLoggedIn && !buttonClicked ? <BtnTransferFA /> : ""}</div>
       </section>
     </DashboardLayout>
   )

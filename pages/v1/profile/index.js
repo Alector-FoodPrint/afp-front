@@ -9,6 +9,8 @@ import BoxProfile from "/components/box-profile"
 import useDashboardUser from "/hooks/useDashboardUser"
 import BoxBlockchain from "/components/box-blockchain"
 import BoxFAProfile from "/components/box-fa-profile-dynamic"
+import BoxProduceAsset from "/components/box-produce-asset"
+
 import BtnAddFA from "/components/btn-add-fa"
 import useReadContractUser from "/hooks/useReadContractUser"
 import Footer from "/components/footer"
@@ -23,6 +25,9 @@ const Profile = props => {
   const { web3State, login, user, userLoading } = useDashboardUser()
   const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, web3State.account)
 
+  const [isProducer, setIsProducer] = useState(false)
+  const [buttonClicked, setButtonClicked] = useState(false)
+
   const [print, setPrint] = useState(null)
   useEffect(() => {
     console.log(">>>>>> profile page ", print)
@@ -36,6 +41,23 @@ const Profile = props => {
     } else {
     }
     return ""
+  }
+
+  useEffect(() => {
+    setIsProducer(prev => false)
+
+    if (user) {
+      console.log("======> user.role", user.role)
+
+      if (user.role == "producer") {
+        setIsProducer(prev => true)
+      }
+    }
+  }, [user])
+
+  const handleButtonClicked = () => {
+    setButtonClicked(prev => true)
+    console.log("I am clicked!")
   }
 
   // const listItems = "hello"
@@ -71,7 +93,9 @@ const Profile = props => {
             )}
           </div>
 
-          <BtnAddFA />
+          <div>{isProducer && buttonClicked ? <BoxProduceAsset user={user} /> : ""}</div>
+
+          <div onClick={handleButtonClicked}>{isProducer && !buttonClicked ? <BtnAddFA /> : ""}</div>
         </section>
       </div>
     </DashboardLayout>
