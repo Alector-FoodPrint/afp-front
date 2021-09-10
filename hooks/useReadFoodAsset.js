@@ -13,39 +13,39 @@ const useReadFoodAsset = (myContract, tokenId) => {
     console.log(">>>>>>PRINT ", print)
   }, [print])
 
-  const createFoodObject = (fa, owner) => {
-    const fType = fa.foodType
-    const foodType = fType.toNumber()
-    const foodName = globalData.FOOD_TYPES[foodType].name
-    // setPrint(foodName)
-
-    const fSubtype = fa.foodSubtype
-    const foodSubtype = fSubtype.toNumber()
-    const foodSubname = globalData.FOOD_TYPES[foodType].subtypes[foodSubtype]
-    // setPrint(foodSubname)
-
-    const unit = globalData.FOOD_TYPES[foodType].unit
-
-    const producer = fa.producedBy
-    const producerHash = producer.toString().toLowerCase()
-    const producerName = globalData.USERS[producerHash].name
-
-    const producerCountry = globalData.USERS[producerHash].country
-
-    const ownerHash = owner.toString().toLowerCase()
-    const ownerName = globalData.USERS[ownerHash].name
-
-    const ownerCountry = globalData.USERS[ownerHash].country
-
-    const q = fa.quantity
-    const quantity = q.toString()
-
-    const myObject = { foodType, foodName, quantity, unit, foodSubtype, foodSubname, producerName, producerHash, producerCountry, ownerName, ownerHash, ownerCountry, tokenId }
-
-    return myObject
-  }
-
   useEffect(() => {
+    const createFoodObject = (fa, owner) => {
+      const fType = fa.foodType
+      const foodType = fType.toNumber()
+      const foodName = globalData.FOOD_TYPES[foodType].name
+      // setPrint(foodName)
+
+      const fSubtype = fa.foodSubtype
+      const foodSubtype = fSubtype.toNumber()
+      const foodSubname = globalData.FOOD_TYPES[foodType].subtypes[foodSubtype]
+      // setPrint(foodSubname)
+
+      const unit = globalData.FOOD_TYPES[foodType].unit
+
+      const producer = fa.producedBy
+      const producerHash = producer.toString().toLowerCase()
+      const producerName = globalData.USERS[producerHash].name
+
+      const producerCountry = globalData.USERS[producerHash].country
+
+      const ownerHash = owner.toString().toLowerCase()
+      const ownerName = globalData.USERS[ownerHash].name
+
+      const ownerCountry = globalData.USERS[ownerHash].country
+
+      const q = fa.quantity
+      const quantity = q.toString()
+
+      const myObject = { foodType, foodName, quantity, unit, foodSubtype, foodSubname, producerName, producerHash, producerCountry, ownerName, ownerHash, ownerCountry, tokenId }
+
+      return myObject
+    }
+
     const readToken = async () => {
       if (myContract) {
         try {
@@ -66,6 +66,9 @@ const useReadFoodAsset = (myContract, tokenId) => {
       }
     }
     readToken()
+    return () => {
+      setFoodObject(null) // This worked for me
+    }
   }, [myContract, tokenId, globalData])
 
   return [foodObject, isLoading, isError]

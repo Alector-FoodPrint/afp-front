@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 export default function useContractTransaction({ message, redirectTo }) {
   // let tx
   const [txLoading, setTxLoading] = useState(false)
+  const [txSuccess, setTxSuccess] = useState(0)
+
   const [promise, setPromise] = useState(null)
   const toast = useToast()
 
@@ -15,7 +17,7 @@ export default function useContractTransaction({ message, redirectTo }) {
       const tx = await promise
       await tx.wait()
       setTxLoading(prev => false)
-
+      setTxSuccess(prev => prev + 1)
       // const tx = {}
       // tx.hash = "blabla"
 
@@ -56,5 +58,5 @@ export default function useContractTransaction({ message, redirectTo }) {
     }
   }, [promise])
 
-  return [txLoading, setPromise]
+  return [txLoading, setPromise, txSuccess]
 }

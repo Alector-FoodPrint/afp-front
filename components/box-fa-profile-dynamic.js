@@ -82,17 +82,17 @@ const BoxFaProfile = ({ tokenId }) => {
 
   // <BoxTemplate className = "my-8 mx-8 md:mx-16 px-8  py-5"/>
   const jsxLoading = (
-    <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 px-8  py-5 flex justify-center">
+    <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 h-28 px-8  py-5 flex justify-center">
       <SpinnerSyncLoader loading={true} />
     </article>
   )
 
   const jsxError = <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 px-8  py-5 h30 text-center ">Food asset {tokenId} is not found</article>
 
-  if (isLoading) {
-    return jsxLoading
-  } else if (foodObject) {
+  if (foodObject) {
     return <JsxLoaded foodObject={foodObject} />
+  } else if (isLoading) {
+    return jsxLoading
   } else if (isError) {
     return jsxError
   } else {

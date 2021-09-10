@@ -1,9 +1,12 @@
 import { useEffect, useState, useContext } from "react"
 import { contextData } from "../context/context-wrapper"
+import { Web3Context } from "web3-hooks"
 
 const useReadContractUser = (myContract, ownerAddress) => {
+  const [web3State] = useContext(Web3Context)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [isRefreshed, setIsRefreshed] = useState(0)
 
   const [ownedIDs, setOwnedIDs] = useState(null)
   const globalData = useContext(contextData)
@@ -18,25 +21,26 @@ const useReadContractUser = (myContract, ownerAddress) => {
     return [...Array(max).keys()]
   }
 
-  const ownedNftIDs = async (contract, account) => {
-    const ownerBalance = await contract.balanceOf(account)
-    console.log("insideeeee!", ownerBalance.toNumber())
-
-    const indexArray = balanceArray(ownerBalance.toNumber())
-    const final = []
-    for (const index of indexArray) {
-      const NFT_ID = await contract.tokenOfOwnerByIndex(account, index)
-      final.push(NFT_ID.toNumber())
-    }
-
-    return final
-  }
   useEffect(() => {
     console.log(">>>>>> ownerAddress ", ownerAddress)
     console.log(">>>>>> myContract ", myContract)
   }, [myContract, ownerAddress])
 
   useEffect(() => {
+    const ownedNftIDs = async (contract, account) => {
+      const ownerBalance = await contract.balanceOf(account)
+      console.log("insideeeee!", ownerBalance.toNumber())
+
+      const indexArray = balanceArray(ownerBalance.toNumber())
+      const final = []
+      for (const index of indexArray) {
+        const NFT_ID = await contract.tokenOfOwnerByIndex(account, index)
+        final.push(NFT_ID.toNumber())
+      }
+
+      return final
+    }
+
     const readToken = async () => {
       if (myContract && ownerAddress) {
         try {
@@ -45,7 +49,6 @@ const useReadContractUser = (myContract, ownerAddress) => {
 
           const IDs = await ownedNftIDs(myContract, ownerAddress)
 
-          setPrint(myContract)
           setOwnedIDs(prev => IDs)
         } catch (e) {
           setIsError(true)
@@ -56,9 +59,12 @@ const useReadContractUser = (myContract, ownerAddress) => {
       }
     }
     readToken()
-  }, [myContract, ownerAddress])
+    return () => {
+      setOwnedIDs(null) // This worked for me
+    }
+  }, [myContract, ownerAddress, isRefreshed])
 
-  return [ownedIDs, isLoading, isError]
+  return [ownedIDs, isLoading, isError, setIsRefreshed]
 }
 
 export default useReadContractUser

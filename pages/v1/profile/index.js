@@ -21,9 +21,10 @@ import { contextAfp } from "/context/context-wrapper"
 
 const Profile = props => {
   const myContract = useContext(contextAfp)
-
+  const [refresh, setRefresh] = useState(0)
+  const [listFA, setListFA] = useState(null)
   const { web3State, login, user, userLoading } = useDashboardUser()
-  const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, web3State.account)
+  const [ownedIDs, isLoading, isError, setIsRefreshed] = useReadContractUser(myContract, web3State.account)
 
   const [isProducer, setIsProducer] = useState(false)
   const [buttonClicked, setButtonClicked] = useState(false)
@@ -33,15 +34,21 @@ const Profile = props => {
     console.log(">>>>>> profile page ", print)
   }, [print])
 
-  const ListItems = ({ ownedIDs, isLoading }) => {
-    if (ownedIDs) {
-      return ownedIDs.map(id => <BoxFAProfile tokenId={id} key={id} />)
-    } else if (isLoading) {
-      return ""
-    } else {
-    }
-    return ""
-  }
+  useEffect(() => {
+    console.log("useEffect activated by refresh!")
+    const myList = ownedIDs?.map(id => <BoxFAProfile tokenId={id} key={id} />)
+    setListFA(myList)
+  }, [refresh, ownedIDs])
+
+  // const ListItems = ({ ownedIDs, isLoading }) => {
+  //   if (ownedIDs) {
+  //     return ownedIDs.map(id => <BoxFAProfile tokenId={id} key={id} />)
+  //   } else if (isLoading) {
+  //     return ""
+  //   } else {
+  //   }
+  //   return ""
+  // }
 
   useEffect(() => {
     setIsProducer(prev => false)
@@ -55,6 +62,13 @@ const Profile = props => {
     }
   }, [user])
 
+  const handleRefresh = () => {
+    console.log("Up drill success!!")
+    setIsRefreshed(prev => prev + 1)
+  }
+  const handleOnClose = () => {
+    setButtonClicked(prev => false)
+  }
   const handleButtonClicked = () => {
     setButtonClicked(prev => true)
     console.log("I am clicked!")
@@ -80,7 +94,13 @@ const Profile = props => {
           {/* <BoxFAProfile />
           <BoxFAProfile /> */}
 
-          <ListItems ownedIDs={ownedIDs} isLoading={isLoading} />
+          {/* <ListItems ownedIDs={ownedIDs} isLoading={isLoading} refresh={refresh} /> */}
+
+          {ownedIDs?.map(id => (
+            <BoxFAProfile tokenId={id} key={id} />
+          ))}
+
+          {/* {listFA} */}
 
           <div>
             {" "}
@@ -93,7 +113,7 @@ const Profile = props => {
             )}
           </div>
 
-          <div>{isProducer && buttonClicked ? <BoxProduceAsset user={user} /> : ""}</div>
+          <div>{isProducer && buttonClicked ? <BoxProduceAsset user={user} handleOnClose={handleOnClose} handleRefresh={handleRefresh} /> : ""}</div>
 
           <div onClick={handleButtonClicked}>{isProducer && !buttonClicked ? <BtnAddFA /> : ""}</div>
         </section>
