@@ -1,16 +1,20 @@
 import { contextAfp, contextData } from "/context/context-wrapper"
 import { useState, useEffect, useContext } from "react"
 import { SwitchHorizontalIcon } from "@heroicons/react/solid"
+import { XIcon } from "@heroicons/react/solid"
+import SpinnerSyncLoader from "/components/spinner-syncloader"
+import { useRouter } from "next/router"
 
 import useContractTransaction from "/hooks/useContractTransaction"
 
-const BoxTransfer = ({ ownerAddress, tokenId }) => {
+const BoxTransfer = ({ ownerAddress, tokenId, setButtonClicked, setRefreshed }) => {
   const myContract = useContext(contextAfp)
   const globalData = useContext(contextData)
+  const router = useRouter()
 
   // const [txLoading, setPromise] = useContractTransaction("message custom!!!", `v1/food-asset/${tokenId}`)
 
-  const [txLoading, setTransferPromise] = useContractTransaction({ message: "Token transfered successfully", redirectTo: `v1/food-asset/${tokenId}` })
+  const [txLoading, setTransferPromise, txSuccess] = useContractTransaction({ message: "Token transfered successfully", redirectTo: `v1/food-asset/${tokenId}` })
 
   const [category, setCategory] = useState(null)
   const [showAddress, setShowAddress] = useState(false)
@@ -18,7 +22,8 @@ const BoxTransfer = ({ ownerAddress, tokenId }) => {
   const [selectedUsers, setSelectedUsers] = useState(null)
   const [userOption, setUserOption] = useState(null)
 
-  const handleTransferAsset = async () => {
+  const handleTransferAsset = async e => {
+    e.preventDefault()
     if (myContract) {
       console.log("button clicked!")
       const tokenIdNum = Number(tokenId)
@@ -26,6 +31,13 @@ const BoxTransfer = ({ ownerAddress, tokenId }) => {
       setTransferPromise(myContract.transferFrom(ownerAddress, userOption.hash, tokenId))
     }
   }
+
+  useEffect(() => {
+    setRefreshed(prev => prev + 1)
+    console.log("txSuceess!")
+
+    // router.push(`/v1/food-asset/${tokenId}`)
+  }, [txSuccess])
 
   useEffect(() => {
     console.log("ownerAddress", ownerAddress)
@@ -60,6 +72,18 @@ const BoxTransfer = ({ ownerAddress, tokenId }) => {
     }
   }, [category])
 
+  const resetValues = () => {
+    setCategory(prev => null)
+    setSelectedUsers(prev => null)
+    setUserOption(prev => null)
+  }
+
+  const onCloseBtn = e => {
+    setButtonClicked(prev => !prev)
+    // handleOnClose()
+    resetValues()
+  }
+
   const onSelectCategory = e => {
     setShowAddress(prev => true)
     console.log("dropdown category")
@@ -81,31 +105,35 @@ const BoxTransfer = ({ ownerAddress, tokenId }) => {
     )) ?? []
 
   const BtnTransfer = userOption ? (
-    <div className="" onClick={handleTransferAsset}>
+    <a className="" onClick={handleTransferAsset} href="">
       <div className="food-asset-add rounded-lg my-8  px-8  py-2  bg-red-300 hover:bg-red-700 text-center  font-black  text-white hover:text-white flex justify-center">
-        <SwitchHorizontalIcon className=" h-5  mr-2   font-black " />
         <div>Transfer</div>
       </div>
-    </div>
+    </a>
   ) : (
     ""
   )
 
-  const showUserData = userOption ? (
-    <div className="">
-      <div className="">Selected User</div>
-      <div className="">name: {userOption.name}</div>
-      <div className="">Account: {userOption.hash}</div>
-      <div className="">Street: {userOption.street}</div>
+  const showUserData =
+    !txLoading && userOption ? (
+      <div className="">
+        <div className="text-foodprint-100">
+          <div className="text-foodprint-700">Transfer to this account:</div>
 
-      <div className="">Country:{userOption.country}</div>
-      <div className="">City:{userOption.city}</div>
-      <div className="">Province: {userOption.province}</div>
-      <div className="">Zip code: {userOption.zip_code}</div>
-    </div>
-  ) : (
-    ""
-  )
+          <div className="content mx-10 p-4">
+            <div className="p-4  ">{userOption?.hash}</div>
+            <div className="pl-4 ">Name: {userOption.name}</div>
+            <div className="pl-4">Street: {userOption.street}</div>
+            <div className="pl-4">Country: {userOption.country}</div>
+            <div className="pl-4">City: {userOption.city}</div>
+            <div className="pl-4">Province: {userOption.province}</div>
+            <div className="pl-4">Zip code: {userOption.zip_code}</div>
+          </div>
+        </div>
+      </div>
+    ) : (
+      ""
+    )
 
   // const listItems = selectedUsers.map(number => (
   //   <option value={user.hash} key={user.id}>
@@ -122,21 +150,27 @@ const BoxTransfer = ({ ownerAddress, tokenId }) => {
 
   return (
     <article className="food-asset-row bg-white content-white rounded-lg my-8 mx-8 md:mx-16 px-8  py-5 ">
-      <div className="info flex justify-start space-x-4 md:space-x-7">
-        <div>
-          <form>
-            <label className="text-foodprint-700 block mb-4 flex items-center justify-start space-x-4">
-              <div> Where would you like to transfer this NFT?</div>
-              <select className="bg-gray-300 p-2 rounded-lg font-black block" onChange={onSelectCategory}>
+      <div className="info ">
+        <div className="content-title  mb-8 w-full flex justify-start">
+          <div className="flex-grow text-foodpribnt-300 ">Transfer ownership of Food Asset</div>
+          <div className="" onClick={onCloseBtn}>
+            <XIcon className="mx-auto h-4 w-4    text-gray-400 inline-block" />
+          </div>
+        </div>
+        <div className="w-full  w-full">
+          <form className="w-full">
+            <label className="text-foodprint-700 block mb-4 flex flex-col justify-center items-center  md:flex-row md:items-center md:justify-start space-x-4">
+              <div className="w-4/6 mb-3"> Transfer to producer, warehouse or vendor?</div>
+              <select className="mb-3 block bg-foodprint-700 text-white  p-2 rounded-lg font-black block" onChange={onSelectCategory}>
                 <option value="producer">producer</option>
                 <option value="vendor">vendor</option>
                 <option value="warehouse">warehouse</option>
               </select>
             </label>
 
-            <label className={`${!showAddress ? "hidden" : ""} text-foodprint-700 block mb-4 flex items-center justify-start space-x-4`}>
-              <div> Select the account you would like to transfer</div>
-              <select className="bg-gray-300 p-2 rounded-lg font-black block" onChange={onSelectUser}>
+            <label className={`${!showAddress ? "hidden" : ""} text-foodprint-700 block mb-4 flex flex-col justify-center items-center  md:flex-row md:items-center md:justify-start space-x-4`}>
+              <div className="w-4/6 mb-3"> Select the account you would like to transfer</div>
+              <select className="mb-3  block bg-foodprint-700 text-white p-2 rounded-lg font-black block" onChange={onSelectUser}>
                 <option value="" key="0">
                   select user
                 </option>
@@ -147,10 +181,14 @@ const BoxTransfer = ({ ownerAddress, tokenId }) => {
           </form>
 
           <div> {showUserData}</div>
-          <div>TRANSFER</div>
-          <div>FROM: {ownerAddress}</div>
-          <div>FROM: {userOption?.hash}</div>
 
+          {txLoading ? (
+            <div className="w-full flex justify-center">
+              <SpinnerSyncLoader loading={true} />
+            </div>
+          ) : (
+            ""
+          )}
           <div className="w-full flex justify-center"> {BtnTransfer}</div>
         </div>
       </div>

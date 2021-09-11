@@ -35,8 +35,14 @@ const FoodAsset = props => {
 
   const [ownerLoggedIn, setOwnerLoggedIn] = useState(false)
   const [ownerAddress, setOwnerAddress] = useState(null)
-
+  const [refreshed, setRefreshed] = useState(0)
   const [buttonClicked, setButtonClicked] = useState(false)
+
+  useEffect(() => {
+    console.log("ownerLoggedIn!", ownerLoggedIn)
+
+    // router.push(`/v1/food-asset/${tokenId}`)
+  }, [ownerLoggedIn])
 
   useEffect(() => {
     if (foodObject && web3State) {
@@ -47,13 +53,16 @@ const FoodAsset = props => {
       setOwnerLoggedIn(prev => false)
 
       if (web3State.account === foodObject.ownerHash) {
-        console.log("ownerLoggedIn", ownerLoggedIn)
+        // console.log("ownerLoggedIn", ownerLoggedIn)
         setOwnerLoggedIn(prev => true)
+      } else {
+        setOwnerLoggedIn(prev => false)
       }
     }
-  }, [foodObject, web3State])
+  }, [foodObject, web3State, refreshed])
 
-  const handleButtonClicked = () => {
+  const handleButtonClicked = e => {
+    e.preventDefault()
     setButtonClicked(prev => true)
     console.log("I am clicked!")
   }
@@ -67,7 +76,7 @@ const FoodAsset = props => {
       </section>
       <section>
         <BoxFAhistory tokenId={tokenId} />
-        <div>{ownerLoggedIn && buttonClicked ? <BoxTransfer tokenId={tokenId} ownerAddress={ownerAddress} /> : ""}</div>
+        <div>{ownerLoggedIn && buttonClicked ? <BoxTransfer tokenId={tokenId} ownerAddress={ownerAddress} setButtonClicked={setButtonClicked} setRefreshed={setRefreshed} /> : ""}</div>
 
         <div onClick={handleButtonClicked}>{ownerLoggedIn && !buttonClicked ? <BtnTransferFA /> : ""}</div>
       </section>
