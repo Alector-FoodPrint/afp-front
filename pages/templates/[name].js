@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import SpinnerSyncLoader from "/components/spinner-syncloader"
 
-const DemoPage = props => {
+const Demopage = props => {
   const router = useRouter()
   const { name } = router.query
   return (
@@ -17,4 +17,4 @@ const DemoPage = props => {
   )
 }
 
-export default DemoPage
+export default Demopage
