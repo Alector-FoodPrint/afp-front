@@ -8,16 +8,19 @@ import BulletTransferFromTo from "./bullet-transfer-from-to"
 import BulletProducedBy from "./bullet-produced-by"
 import SpinnerSyncLoader from "/components/spinner-syncloader"
 
-const BoxFAhistory = ({ tokenId }) => {
+const BoxFAhistory = ({ tokenId, refreshed }) => {
   const [print, setPrint] = useState(null)
   const [styledEventList, setStyledEventList] = useState(null)
+  const myContract = useContext(contextAfp)
+  const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId)
+
+  useEffect(() => {
+    setTransRefresh(prev => prev + 1)
+  }, [refreshed])
 
   useEffect(() => {
     console.log(">>>>>>box fa print ", print)
   }, [print])
-
-  const myContract = useContext(contextAfp)
-  const [eventList, isLoading, isError] = useReadTransferEvent(myContract, tokenId)
 
   const addStyleClasses = evList => {
     let eventClass

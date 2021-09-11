@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react"
 import { contextData } from "../context/context-wrapper"
 
 const useReadTransferEvent = (myContract, tokenId) => {
+  const [transRefresh, setTransRefresh] = useState(0)
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
@@ -63,9 +65,9 @@ const useReadTransferEvent = (myContract, tokenId) => {
       }
     }
     readEvent()
-  }, [myContract, tokenId, globalData])
+  }, [myContract, tokenId, globalData, transRefresh])
 
-  return [eventList, isLoading, isError]
+  return [eventList, isLoading, isError, setTransRefresh]
 }
 
 export default useReadTransferEvent

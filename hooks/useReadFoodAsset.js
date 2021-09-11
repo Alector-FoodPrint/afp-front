@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react"
 import { contextData } from "../context/context-wrapper"
 
 const useReadFoodAsset = (myContract, tokenId) => {
+  const [faRefreshed, setFaRefreshed] = useState(0)
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
@@ -49,6 +51,7 @@ const useReadFoodAsset = (myContract, tokenId) => {
     const readToken = async () => {
       if (myContract) {
         try {
+          console.log("--- useReadFoodAsset")
           setIsLoading(true)
           let tname = await myContract.name()
 
@@ -69,9 +72,9 @@ const useReadFoodAsset = (myContract, tokenId) => {
     return () => {
       setFoodObject(null) // This worked for me
     }
-  }, [myContract, tokenId, globalData])
+  }, [myContract, tokenId, globalData, faRefreshed])
 
-  return [foodObject, isLoading, isError]
+  return [foodObject, isLoading, isError, setFaRefreshed]
 }
 
 export default useReadFoodAsset

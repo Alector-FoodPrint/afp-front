@@ -163,8 +163,8 @@ const BoxTransfer = ({ ownerAddress, tokenId, setButtonClicked, setRefreshed }) 
               <div className="w-4/6 mb-3"> Transfer to producer, warehouse or vendor?</div>
               <select className="mb-3 block bg-foodprint-700 text-white  p-2 rounded-lg font-black block" onChange={onSelectCategory}>
                 <option value="producer">producer</option>
-                <option value="vendor">vendor</option>
                 <option value="warehouse">warehouse</option>
+                <option value="vendor">vendor</option>
               </select>
             </label>
 

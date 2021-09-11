@@ -29,7 +29,7 @@ const FoodAsset = props => {
 
   const router = useRouter()
   const { tokenId } = router.query
-  const [foodObject, isLoading, isError] = useReadFoodAsset(myContract, tokenId)
+  const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId)
 
   const allAssetsLink = "v1/food-assets"
 
@@ -49,7 +49,6 @@ const FoodAsset = props => {
       console.log("logged in address", web3State.account)
       console.log("owner", foodObject.ownerHash)
       setOwnerAddress(prev => web3State.account)
-
       setOwnerLoggedIn(prev => false)
 
       if (web3State.account === foodObject.ownerHash) {
@@ -57,9 +56,15 @@ const FoodAsset = props => {
         setOwnerLoggedIn(prev => true)
       } else {
         setOwnerLoggedIn(prev => false)
+        setButtonClicked(prev => false)
       }
     }
-  }, [foodObject, web3State, refreshed])
+  }, [foodObject, web3State])
+
+  useEffect(() => {
+    setFaRefreshed(prev => prev + 1)
+    console.log("refreshed", refreshed)
+  }, [refreshed])
 
   const handleButtonClicked = e => {
     e.preventDefault()
@@ -75,7 +80,7 @@ const FoodAsset = props => {
         <BoxFAtop foodObject={foodObject} isLoading={isLoading} isError={isError} tokenId={tokenId} />
       </section>
       <section>
-        <BoxFAhistory tokenId={tokenId} />
+        <BoxFAhistory tokenId={tokenId} refreshed={refreshed} />
         <div>{ownerLoggedIn && buttonClicked ? <BoxTransfer tokenId={tokenId} ownerAddress={ownerAddress} setButtonClicked={setButtonClicked} setRefreshed={setRefreshed} /> : ""}</div>
 
         <div onClick={handleButtonClicked}>{ownerLoggedIn && !buttonClicked ? <BtnTransferFA /> : ""}</div>
