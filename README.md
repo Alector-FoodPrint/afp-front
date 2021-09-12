@@ -53,4 +53,4 @@ The front-end detects if the user is registered as a Producer, Warehouse or Vend
 
 If the user is a registered Producer, then a button to create new assets appears on the screen (in "My Profile"). This option is visible only to producers.
 
-![produce button](public/img/readme/transfer-button.png)
+![produce button](public/img/readme/produce-button.png)
