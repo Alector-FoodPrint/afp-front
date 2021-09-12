@@ -26,7 +26,7 @@ const JsxLoaded = ({ foodObject }) => {
         </div>
 
         <div className="col3">
-          <div className="label text-foodprint-100 text-xs min-w-max">AFD ID</div>
+          <div className="label text-foodprint-100 text-xs min-w-max">AFA ID</div>
           <div className="content mt-1">{foodObject.tokenId}</div>
         </div>
 

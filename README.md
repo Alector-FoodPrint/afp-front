@@ -5,8 +5,6 @@
 - Deployed: [foodprint.alector.dev](https://foodprint.alector.dev)
 - AFA.sol smart contract: [Alector-FoodPrint/AFP-Hardhat](https://github.com/Alector-FoodPrint/AFP-Hardhat)
 
-![sample page](public/img/readme/main-page.png)
-
 ## Getting Started
 
 > This is the front-end of a decentralised app (Dapp), build with NextJS / React.
