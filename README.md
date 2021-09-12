@@ -3,7 +3,7 @@
 > Revolutionizing food transparency & traceability
 
 - Deployed: [foodprint.alector.dev](https://foodprint.alector.dev)
-- Smart contracts: [Alector-FoodPrint/AFP-Hardhat](https://github.com/Alector-FoodPrint/AFP-Hardhat)
+- AFA.sol smart contract: [Alector-FoodPrint/AFP-Hardhat](https://github.com/Alector-FoodPrint/AFP-Hardhat)
 
 ## Getting Started
 
@@ -29,8 +29,25 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deployed on Vercel
+## Learn More
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**AlectorFoodprint** is an experiment that utilises blockchain technology to ensure transparency and traceability of Food Products.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The front-end manages Food Assets created by users (Producers) that can be then transfered to warehouses and vendors. Each Food Asset corresponds to a unique AFA (Alector Food Asset), a NFT token created by a smart contract (ERC721) deployed on Ethereum Rinkeby network. The history of registered Food Assets are traced and mapped online, in a user-friendly experience, ensuring transparency of the food chain.
+
+> What is an AFA? AFA is the symbol that corresponds to "Alector Food Asset", a traceable NFT token (ERC721) deployed by the AFA.sol smart contract.
+
+This is a MVP (Minimum Vial Product) that traces 4 basic pieces of information for each Food Asset:
+
+1. Produced by
+2. Food Type (e.g. Eggs)
+3. Food Subtype (e.g. Free-run)
+4. Quantity
+
+The unit of measurement is identified automatically by the combination of type and subtype (e.g. quantity of 100 corresponds to 100 Kilos if concerns type of Tomatoes, or 100 Lt if it's a type of Milk).
+
+The experiment currently supports three type of users:
+
+- producers (with granted access to produce new tokens / Food Assets)
+- warehouses (can transfer tokens / Food Assets)
+- vendors (can transfer tokens / Food Assets)
