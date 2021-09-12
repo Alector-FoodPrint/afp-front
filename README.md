@@ -51,8 +51,10 @@ The front-end detects if the user is registered as a Producer, Warehouse or Vend
 
 If the user is a registered Producer, Vendor or Warehouse then a button to transfer assets appears in the screen, which is visible only to registered members.
 
-![transfer button](https://github.com/Alector-FoodPrint/afp-front/tree/master/public/img/readme/produce-button.png)
+https://github.com/Alector-FoodPrint/afp-front/tree/master/public/img/readme/produce-button.png
+
+![transfer button](public/img/readme/produce-button.png)
 
 If the user is a registered Producer, then a button to create new assets appears on the screen (in "My Profile"). This option is visible only to producers.
 
-![produce button](https://github.com/Alector-FoodPrint/afp-front/tree/master/public/img/readme/produce-button.png)
+![produce button](/public/img/readme/produce-button.png)
