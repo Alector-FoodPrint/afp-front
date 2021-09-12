@@ -2,6 +2,10 @@ import React, { Component } from "react"
 import SpinnerSyncLoader from "/components/spinner-syncloader"
 
 const BoxBlockchain = ({ web3State, ownedIDs }) => {
+  const ethShortener = fullEth => {
+    return fullEth.slice(0, 5)
+  }
+
   const MyContents =
     web3State && ownedIDs ? (
       <>
@@ -13,7 +17,7 @@ const BoxBlockchain = ({ web3State, ownedIDs }) => {
         </div>
         <div className="label-row flex w-full mb-4">
           <div className="label-name text-foodprint-100  w-3/6 text-sm">Eth Balance</div>
-          <div className="w-3/6 label-content text-sm">{web3State.balance}</div>
+          <div className="w-3/6 label-content text-sm">{web3State.balance.slice(0, 5)}</div>
         </div>
         <div className="label-row flex w-full mb-4">
           <div className="label-name text-foodprint-100  w-3/6 text-sm">Total AFAs</div>

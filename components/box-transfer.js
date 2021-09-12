@@ -85,10 +85,15 @@ const BoxTransfer = ({ ownerAddress, tokenId, setButtonClicked, setRefreshed }) 
   }
 
   const onSelectCategory = e => {
-    setShowAddress(prev => true)
-    console.log("dropdown category")
-    setCategory(e.target.value)
-    console.log(category)
+    if (e.target.value) {
+      setShowAddress(prev => true)
+      console.log("dropdown category")
+
+      setCategory(e.target.value)
+      console.log(category)
+    } else {
+      setShowAddress(prev => !prev)
+    }
   }
 
   const onSelectUser = e => {
@@ -162,6 +167,8 @@ const BoxTransfer = ({ ownerAddress, tokenId, setButtonClicked, setRefreshed }) 
             <label className="text-foodprint-700 block mb-4 flex flex-col justify-center items-center  md:flex-row md:items-center md:justify-start space-x-4">
               <div className="w-4/6 mb-3"> Transfer to producer, warehouse or vendor?</div>
               <select className="mb-3 block bg-foodprint-700 text-white  p-2 rounded-lg font-black block" onChange={onSelectCategory}>
+                <option value="">Send to</option>
+
                 <option value="producer">producer</option>
                 <option value="warehouse">warehouse</option>
                 <option value="vendor">vendor</option>

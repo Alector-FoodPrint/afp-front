@@ -13,8 +13,8 @@ const JsxLoaded = ({ foodObject }) => {
       <div className="info flex justify-center space-x-4 md:space-x-7">
         <div className="col1 ml-5 w-36 lg:w-48  flex-grow md:flex-1">
           <div className="type h-full  lg:flex items-center">
-            <div className="name text-lg font-bold">{foodObject.foodName}</div>
-            <div className="quantity ml-0 md:ml-2 mt-2 md:mt-0 font-light min-w-max ">
+            <div className="name text-lg font-bold pr-2">{foodObject.foodName}</div>
+            <div className="quantity  mt-2 md:mt-0 font-light min-w-max ">
               ({foodObject.quantity} {foodObject.unit})
             </div>
           </div>
