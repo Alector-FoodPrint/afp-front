@@ -1,5 +1,7 @@
 import React from "react"
 import { AfpAddress, AfpAbi } from "../contracts/AFP"
+import { AfaAddress, AfaAbi } from "../contracts/AFA"
+
 import { useState, useEffect } from "react"
 
 // import { Web3Provider } from "web3-hooks"
@@ -32,7 +34,7 @@ const userFilter = function (obj, predicate) {
 }
 
 const ContextWrapper = props => {
-  const myNFT = useContract(AfpAddress, AfpAbi)
+  const myNFT = useContract(AfaAddress, AfaAbi)
 
   const [globalData, setGlobalData] = useState(null)
 
