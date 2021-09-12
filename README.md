@@ -43,13 +43,11 @@ The experiment currently supports three type of users:
 - warehouses (can transfer tokens / Food Assets)
 - vendors (can transfer tokens / Food Assets)
 
-## What actions can the users do in the front-end? What
+## What actions are supported for registered users?
 
 All users must login with Metamask.
 
-The front-end detects if the user is registered as a Producer, Warehouse or Vendor.
-
-If the user is a registered Producer, Vendor or Warehouse then a button to transfer assets appears in the screen, which is visible only to registered members.
+The front-end detects if the user is registered as a Producer, Warehouse or Vendor. For registered members, then a button to transfer assets appears in the screen, which is visible only to registered members.
 
 ![transfer button](public/img/readme/transfer-button.png)
 
