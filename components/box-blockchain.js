@@ -16,7 +16,7 @@ const BoxBlockchain = ({ web3State, ownedIDs }) => {
           <div className="w-3/6 label-content text-sm">{web3State.balance}</div>
         </div>
         <div className="label-row flex w-full mb-4">
-          <div className="label-name text-foodprint-100  w-3/6 text-sm">Total AFPs</div>
+          <div className="label-name text-foodprint-100  w-3/6 text-sm">Total AFAs</div>
           <div className="w-3/6 label-content text-sm">{ownedIDs.length}</div>
         </div>
       </>

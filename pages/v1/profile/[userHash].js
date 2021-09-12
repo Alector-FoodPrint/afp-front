@@ -88,8 +88,6 @@ const UserProfile = props => {
               ""
             )}
           </div>
-
-          <BtnAddFA />
         </section>
       </div>
     </DashboardLayout>
