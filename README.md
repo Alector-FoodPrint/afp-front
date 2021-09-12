@@ -47,7 +47,7 @@ The experiment currently supports three type of users:
 
 All users must login with Metamask.
 
-The front-end detects if the user is registered as a Producer, Warehouse or Vendor. For registered members, then a button to transfer assets appears in the screen, which is visible only to registered members.
+The front-end detects if the user is registered as a Producer, Warehouse or Vendor. For registered members, then a button to transfer assets appears in the screen, which is visible only if logged in user is also the owner of this Food Asset (only owners can transfer their AFA token).
 
 ![transfer button](public/img/readme/transfer-button.png)
 
