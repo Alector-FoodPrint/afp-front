@@ -7,7 +7,7 @@
 
 ## Getting Started
 
-> This is the front-end of a decentralised app (Dapp), build with NextJS.
+> This is the front-end of a decentralised app (Dapp), build with NextJS / React.
 
 You can run the development server:
 
@@ -42,3 +42,17 @@ The experiment currently supports three type of users:
 - producers (with granted access to produce new tokens / Food Assets)
 - warehouses (can transfer tokens / Food Assets)
 - vendors (can transfer tokens / Food Assets)
+
+## What actions can the users do in the front-end? What
+
+All users must login with Metamask.
+
+The front-end detects if the user is registered as a Producer, Warehouse or Vendor.
+
+If the user is a registered Producer, Vendor or Warehouse then a button to transfer assets appears in the screen, which is visible only to registered members.
+
+![transfer button](https://github.com/Alector-FoodPrint/afp-front/tree/master/public/img/readme/produce-button.png)
+
+If the user is a registered Producer, then a button to create new assets appears on the screen (in "My Profile"). This option is visible only to producers.
+
+![produce button](https://github.com/Alector-FoodPrint/afp-front/tree/master/public/img/readme/produce-button.png)
