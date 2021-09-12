@@ -17,6 +17,8 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Alector FoodPrint</title>
+        <meta name="description" content="Alector FoodPrint - Revolutionizing food transparency & traceability" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <ChakraProvider>

@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import useReadFoodAsset from "/hooks/useReadFoodAsset"
 import DashboardLayout from "/components/layout-dashboard"
 import BoxFAProfile from "/components/box-fa-profile-dynamic"
+import Head from "next/head"
 
 const FoodAssets = props => {
   const myContract = useContext(contextAfp)
@@ -49,6 +50,10 @@ const FoodAssets = props => {
 
   return (
     <DashboardLayout page="food-assets">
+      <Head>
+        <title>Alector Foodprint | Food Assets</title>
+        <meta name="description" content="List of all registered food assets in Alector Foodprint." />
+      </Head>
       <section className="all-assets-row ">
         <div className="content-title text-foodprint-700 font-black mx-8 md:mx-16  mt-10  pl-3 mb-0">Food Assets</div>
 
