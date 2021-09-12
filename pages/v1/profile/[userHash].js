@@ -71,7 +71,7 @@ const UserProfile = props => {
 
       <div className="row-one-section w-full">
         <section className="all-assets-row ">
-          <div className="content-title text-foodprint-700 font-black mx-8 md:mx-16  mt-10  pl-3 mb-0">My Food Assets</div>
+          <div className="content-title text-foodprint-700 font-black mx-8 md:mx-16  mt-10  pl-3 mb-0">{ownedIDs ? "User Food Assets" : ""}</div>
 
           {/* <BoxFAProfile />
           <BoxFAProfile /> */}

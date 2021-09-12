@@ -43,7 +43,7 @@ const BoxProfile = ({ user, title }) => {
   } else {
     return (
       <section className="content-half md:w-3/6 ">
-        <div className="content-title text-foodprint-700 font-black mb-8 ml-3">My Profile</div>
+        <div className="content-title text-foodprint-700 font-black mb-8 ml-3">Profile</div>
 
         <div className="content-white flex bg-white rounded-lg p-8 pb-10 flex justify-center text-foodprint-300">
           {/* <div className="left-block md:w-3/5 flex justify-left text-foodprint-300"> */}

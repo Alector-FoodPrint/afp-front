@@ -75,7 +75,14 @@ const FoodAsset = props => {
   return (
     <DashboardLayout page="food-assets">
       <section className="all-assets-row ">
-        <div className="content-title text-foodprint-700 font-black mx-8 md:mx-16  mt-10  pl-3 mb-0">All Assets / Food Asset</div>
+        <div className="content-title  text-foodprint-700 font-black mx-8 md:mx-16  mt-10  pl-3 mb-0">
+          <Link href={`/v1/food-assets`} passHref>
+            <a className="text-foodprint-300 hover:text-foodprint-700" href="">
+              All Assets
+            </a>
+          </Link>{" "}
+          / Food Asset / {tokenId}
+        </div>
 
         <BoxFAtop foodObject={foodObject} isLoading={isLoading} isError={isError} tokenId={tokenId} />
       </section>
