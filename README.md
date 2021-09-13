@@ -138,7 +138,7 @@ Notes:
 
 The front-end design was made with `Sketch` and materialised with `TailwindCss`. A set of custom colors were added in Tailwind CSS configuiration file.
 
-```json
+```js
 
   theme: {
     extend: {
