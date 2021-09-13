@@ -133,3 +133,35 @@ Notes:
 | useReadContractUser  | Retreives all NFTs owned by a user.                                        | `const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash)`                   |
 | useReadFoodAsset     | Retreive NFT details based on ID.                                          | `const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) `    |
 | useReadTransferEvent | Retreive the Transfer event history of a NFT token.                        | `const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId)` |
+
+# Custom design & color palette
+
+The front-end design was made with `Sketch` and materialised with `TailwindCss`. A set of custom colors were added in Tailwind CSS configuiration file.
+
+```json
+
+  theme: {
+    extend: {
+      colors: {
+        foodprint: {
+          50: "#F3F6F9",
+          70: "#E6E3F2",
+          100: "#7A7979",
+          300: "#A8BBCD",
+          700: "#507396",
+          800: "#143B62"
+        }
+      }
+    }
+
+```
+
+Therefore, the JSX has access custom **utility classes** like `bg-foodprint-700` or `text-foodprint-700` along with all standard Talwind utility classes (like `text-center`).
+
+Example:
+
+```html
+<button className="bg-foodprint-700 hover:bg-foodprint-800 text-center ">{description}</button>
+```
+
+![color palette](public/img/readme/color-palette.png)
