@@ -127,9 +127,9 @@ Notes:
 
 ## Custom hooks for special functionalities
 
-| hook name            | functionality                                      | example                                                                                              |
-| -------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| useDashboardUser     | User authentication                                | `const { web3State } = useDashboardUser()`                                                           |
-| useReadContractUser  | Retreives all NFTs owned by a user                 | `const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash)`                   |
-| useReadFoodAsset     | Retreive NFT details based on ID                   | `const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) `    |
-| useReadTransferEvent | Retreive the Transfer event history of a NFT token | `const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId)` |
+| hook name            | functionality                                                              | example                                                                                              |
+| -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| useDashboardUser     | User authentication. Redirects in Login page if user is not authenticated. | `const { web3State } = useDashboardUser()`                                                           |
+| useReadContractUser  | Retreives all NFTs owned by a user                                         | `const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash)`                   |
+| useReadFoodAsset     | Retreive NFT details based on ID                                           | `const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) `    |
+| useReadTransferEvent | Retreive the Transfer event history of a NFT token                         | `const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId)` |
