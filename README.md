@@ -125,7 +125,7 @@ Notes:
 - setProducePromise: The promise `myContract.Produce(quantity, selectedCategoryNum, selectedSubcategoryNum` is hardcoded inside the function that controls the button component. This makes it easy to add different promise in different button and reuse only one line of code with a custom hook.
 - txSuccess: returns true if the transaction was successful
 
-## Custom hooks for special transactions that
+## Custom hooks for special functionalities
 
 | hook name            | functionality                                      | example                                                                                              |
 | -------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -133,12 +133,3 @@ Notes:
 | useReadContractUser  | Retreives all NFTs owned by a user                 | `const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash)`                   |
 | useReadFoodAsset     | Retreive NFT details based on ID                   | `const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) `    |
 | useReadTransferEvent | Retreive the Transfer event history of a NFT token | `const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId)` |
-
-Notes
-
-- useDashboardUser.js | const { web3State } = useDashboardUser() | Authentication
-- useReadContractUser.js | const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash) | retreives all NFTs owned by a user
-
-- useReadFoodAsset.js | const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) | Retreive NFT details based on ID
-
-- useReadTransferEvent.js | const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId) | Retreive the Transfer event history of a NFT token
