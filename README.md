@@ -92,3 +92,53 @@ File: `/context/context-wrapper.js`
   </contextAfp.Provider>
 </contextData.Provider>
 ```
+
+## Custom Hooks
+
+Currently the application operates only only two types of transaction with the blockchain:
+
+- register new NFT token to the blockchain (create a new food object), only if the user is also registered as producer by an adiminstrator
+- transfer an existing food object, only if the person who transfers also owns the NFT token.
+
+Nevertheless, the transactions were designed with a custom hook that supports _any type_ of transaction, in order to be able to scale up the application in the future, if necessary.
+
+### useContractTransaction
+
+File: `/components/box-produce-asset.js`
+
+```js
+import useContractTransaction from "/hooks/useContractTransaction"
+
+const [txLoading, setProducePromise, txSuccess] = useContractTransaction("Food Asset was succesfully produced", "")
+
+const handleProduceAsset = async e => {
+  if (myContract) {
+    e.preventDefault()
+    setProducePromise(myContract.Produce(quantity, selectedCategoryNum, selectedSubcategoryNum))
+  }
+}
+```
+
+Notes:
+
+- txLoading: returns true if the promise is loading (connection with the blockchain)
+- setProducePromise: The promise `myContract.Produce(quantity, selectedCategoryNum, selectedSubcategoryNum` is hardcoded inside the function that controls the button component. This makes it easy to add different promise in different button and reuse only one line of code with a custom hook.
+- txSuccess: returns true if the transaction was successful
+
+## Custom hooks for special transactions that
+
+| hook name            | functionality                                      | example                                                                                              |
+| -------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| useDashboardUser     | User authentication                                | `const { web3State } = useDashboardUser()`                                                           |
+| useReadContractUser  | Retreives all NFTs owned by a user                 | `const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash)`                   |
+| useReadFoodAsset     | Retreive NFT details based on ID                   | `const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) `    |
+| useReadTransferEvent | Retreive the Transfer event history of a NFT token | `const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId)` |
+
+Notes
+
+- useDashboardUser.js | const { web3State } = useDashboardUser() | Authentication
+- useReadContractUser.js | const [ownedIDs, isLoading, isError] = useReadContractUser(myContract, userHash) | retreives all NFTs owned by a user
+
+- useReadFoodAsset.js | const [foodObject, isLoading, isError, setFaRefreshed] = useReadFoodAsset(myContract, tokenId) | Retreive NFT details based on ID
+
+- useReadTransferEvent.js | const [eventList, isLoading, isError, setTransRefresh] = useReadTransferEvent(myContract, tokenId) | Retreive the Transfer event history of a NFT token
