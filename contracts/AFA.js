@@ -1,4 +1,4 @@
-export const AfaAddress = "0xdbA3c2eb819eC0F340766BeAfCae2388d02A4AA1"
+export const AfaAddress = "0x761262396808A3B00328C88208C18d4185db8Ce1"
 
 export const AfaAbi = [
   {
