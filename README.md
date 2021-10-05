@@ -1,6 +1,6 @@
 # Alector FoodPrint
 
-> Revolutionizing food transparency & food traceability
+> Revolutionizing food transparency & traceability
 
 - Deployed: [foodprint.alector.dev](https://foodprint.alector.dev)
 - AFA.sol smart contract: [Alector-FoodPrint/AFP-Hardhat](https://github.com/Alector-FoodPrint/AFP-Hardhat)
